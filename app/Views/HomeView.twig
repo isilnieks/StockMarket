@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link href=
+          "https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+          rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registry</title>
+    <link rel="stylesheet" type="text/css" href="../styles.css">
+</head>
+<body>
+
+<h1 class="text-black-600 text-5xl font-bold text-center bg-blue-900">
+    Stock Market
+</h1>
+
+<div class="mx-0 bg-blue-900 grid grid-rows-3 grid-flow-col text-justify p-2 ">
+    <a href="/buy">
+        <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+            Buy Stock
+        </button>
+    </a>
+    <br>
+    <a href="/sell">
+        <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+            Sell Stock
+        </button>
+    </a>
+</div>
+<pre>
+</pre>
+<div class="mx-0 bg-blue-900 grid grid-rows-0
+                grid-flow-col text-justify p-4 h-screen">
+    <div class="flex flex-col">
+        <div class="-my-2 overflow-x-auto sm:-mx-4 lg:-mx-4">
+            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+
+                        <tr>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Stock Symbol
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Price
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Owned Amount
+                            </th>
+                            {% for stock in stocks %}
+                        </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">
+                                            {{ stock.symbol }}
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900"> {{ stock.price }}</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                <span class="text-sm text-gray-900">
+                  {{ stock.amount }}
+                </span>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>
