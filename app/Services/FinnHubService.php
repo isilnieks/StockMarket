@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Repositories\FinnHubRepository;
 
-class PriceService
+class FinnHubService
 {
     private FinnHubRepository $repository;
 
@@ -13,8 +13,13 @@ class PriceService
         $this->repository = $repository;
     }
 
-    public function execute(string $symbol): float
+    public function price(string $symbol): float
     {
         return $this->repository->price($symbol);
+    }
+
+    public function name(string $symbol): string
+    {
+        return $this->repository->name($symbol);
     }
 }

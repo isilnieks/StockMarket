@@ -20,13 +20,15 @@ class MySQLStocksRepository implements StocksRepository
         ]);
     }
 
-    public function buy(string $symbol, int $amount, float $price): void
+    public function buy(string $symbol, int $amount, float $price, string $name): void
     {
         $symbol = strtoupper($symbol);
         $this->database->insert('stocks', [
             'symbol' => $symbol,
             'amount' => $amount,
-            'price' => $price
+            'price' => $price,
+            'date' => date("Y/m/d", time()),
+            'name' => $name
         ]);
     }
 
@@ -46,7 +48,7 @@ class MySQLStocksRepository implements StocksRepository
     {
         foreach($this->database->select('stocks', '*') as $stock)
         {
-            $allStocks[] = new Stock($stock['symbol'],$stock['price'],$stock['amount']);
+            $allStocks[] = new Stock($stock['symbol'],$stock['price'],$stock['amount'],$stock['date'], $stock['name']);
         }
         return $allStocks;
     }

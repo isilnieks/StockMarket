@@ -24,4 +24,9 @@ class FinnHubRepository
         $symbol = strtoupper($symbol);
         return $this->client->quote($symbol)["c"];
     }
+
+    public function name(string $symbol)
+    {
+        return $this->client->companyProfile2($symbol)["name"];
+    }
 }

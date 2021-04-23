@@ -8,15 +8,22 @@ class Stock
     private string $symbol;
     private float $price;
     private int $amount;
+    private string $date;
+    private string $name;
 
     public function __construct(
         string $symbol,
         float $price,
-        int $amount)
+        int $amount,
+        string $date,
+        string $name
+    )
     {
         $this->symbol = $symbol;
         $this->price = $price;
         $this->amount = $amount;
+        $this->date = $date;
+        $this->name = $name;
     }
 
     public function price(): float
@@ -34,5 +41,14 @@ class Stock
         return $this->amount;
     }
 
+    public function date(): string
+    {
+        return $this->date;
+    }
+
+    public function name(): string
+    {
+        return $this->name;
+    }
 
 }

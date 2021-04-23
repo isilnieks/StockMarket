@@ -988,59 +988,69 @@ SELECT|sys.sys_config
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="305" parent="288" name="stocks_symbol_uindex">
+    <column id="305" parent="288" name="date">
+      <Position>4</Position>
+      <DataType>date|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="306" parent="288" name="name">
+      <Position>5</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="307" parent="288" name="stocks_symbol_uindex">
       <ColNames>symbol</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="306" parent="288" name="PRIMARY">
+    <key id="308" parent="288" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>symbol</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="307" parent="288" name="stocks_symbol_uindex">
+    <key id="309" parent="288" name="stocks_symbol_uindex">
       <ColNames>symbol</ColNames>
       <UnderlyingIndexName>stocks_symbol_uindex</UnderlyingIndexName>
     </key>
-    <column id="308" parent="289" name="token">
+    <column id="310" parent="289" name="token">
       <Position>1</Position>
       <DataType>char(40)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="309" parent="289" name="code">
+    <column id="311" parent="289" name="code">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="310" parent="289" name="time">
+    <column id="312" parent="289" name="time">
       <Position>3</Position>
       <DataType>int unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="311" parent="289" name="tokens_code_uindex">
+    <index id="313" parent="289" name="tokens_code_uindex">
       <ColNames>code</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="312" parent="289" name="PRIMARY">
+    <key id="314" parent="289" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>token</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="313" parent="289" name="tokens_code_uindex">
+    <key id="315" parent="289" name="tokens_code_uindex">
       <ColNames>code</ColNames>
       <UnderlyingIndexName>tokens_code_uindex</UnderlyingIndexName>
     </key>
-    <column id="314" parent="290" name="id">
+    <column id="316" parent="290" name="id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="315" parent="290" name="money">
+    <column id="317" parent="290" name="money">
       <Position>2</Position>
       <DataType>float|0s</DataType>
     </column>
-    <key id="316" parent="290" name="PRIMARY">
+    <key id="318" parent="290" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

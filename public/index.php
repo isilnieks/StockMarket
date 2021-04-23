@@ -9,6 +9,7 @@ use App\Repositories\StocksRepository;
 use App\Repositories\WalletRepository;
 use App\Services\AddMoneyService;
 use App\Services\BuyStockService;
+use App\Services\FinnHubService;
 use App\Services\OwnedStockService;
 use App\Services\PriceService;
 use App\Services\RemoveMoneyService;
@@ -42,7 +43,7 @@ $container->add(RemoveMoneyService::class, RemoveMoneyService::class)
     ->addArgument(WalletRepository::class);
 $container->add(AddMoneyService::class, AddMoneyService::class)
     ->addArgument(WalletRepository::class);
-$container->add(PriceService::class, PriceService::class)
+$container->add(FinnHubService::class, FinnHubService::class)
     ->addArgument(FinnHubRepository::class);
 $container->add(BuyStockService::class, BuyStockService::class)
     ->addArgument(StocksRepository::class);
@@ -56,7 +57,7 @@ $container->add(HomeController::class, HomeController::class)
         WalletService::class,
         RemoveMoneyService::class,
         AddMoneyService::class,
-        PriceService::class,
+        FinnHubService::class,
         BuyStockService::class
     ]);
 

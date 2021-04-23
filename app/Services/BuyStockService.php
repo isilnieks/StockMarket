@@ -13,9 +13,9 @@ class BuyStockService
         $this->repository = $repository;
     }
 
-    public function execute(string $symbol, int $amount, float $price): void
+    public function execute(string $symbol, int $amount, float $price, string $name): void
     {
-        $this->repository->buy($symbol, $amount, $price);
+        $this->repository->buy($symbol, $amount, $price, $name);
     }
 
 }

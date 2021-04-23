@@ -4,8 +4,8 @@ namespace App\Controllers;
 
 use App\Services\AddMoneyService;
 use App\Services\BuyStockService;
+use App\Services\FinnHubService;
 use App\Services\OwnedStockService;
-use App\Services\PriceService;
 use App\Services\RemoveMoneyService;
 use App\Services\SellStockService;
 use App\Services\WalletService;
@@ -19,7 +19,7 @@ class HomeController
     private WalletService $wallet;
     private RemoveMoneyService $removeMoney;
     private AddMoneyService $addMoney;
-    private PriceService $price;
+    private FinnHubService $finnHub;
     private BuyStockService $buyStock;
 
     public function __construct(
@@ -29,7 +29,7 @@ class HomeController
         WalletService $wallet,
         RemoveMoneyService $removeMoney,
         AddMoneyService $addMoney,
-        PriceService $price,
+        FinnHubService $finnHub,
         BuyStockService $buyStock
     )
     {
@@ -39,7 +39,7 @@ class HomeController
         $this->wallet = $wallet;
         $this->removeMoney = $removeMoney;
         $this->addMoney = $addMoney;
-        $this->price = $price;
+        $this->finnHub = $finnHub;
         $this->buyStock = $buyStock;
 
     }
@@ -48,15 +48,19 @@ class HomeController
     {
         $stocks = $this->ownedStock->execute();
         $money = $this->wallet->execute();
+        $currentPrice = $this->finnHub;
 
-        return $this->environment->render('HomeView.twig', ['stocks' => $stocks]);
+        return $this->environment->render('HomeView.twig',
+            ['stocks' => $stocks,
+             'money' => $money,
+             'currentPrice' => $currentPrice]);
     }
 
     public function sell()
     {
         if (isset($_POST['sell_symbol']) && isset($_POST['sell_amount'])) {
             $this->sellStock->execute($_POST['sell_symbol'], $_POST['sell_amount']);
-            $earnings = $_POST['sell_amount'] * $this->price->execute($_POST['sell_symbol']);
+            $earnings = $_POST['sell_amount'] * $this->finnHub->price($_POST['sell_symbol']);
             $this->addMoney->execute($earnings);
         }
         return $this->environment->render('SellView.twig');
@@ -69,9 +73,11 @@ class HomeController
             (
                 $_POST['buy_symbol'],
                 $_POST['buy_amount'],
-                $this->price->execute($_POST['buy_symbol'])
+                $this->finnHub->price($_POST['buy_symbol']),
+                $this->finnHub->name($_POST['buy_symbol']
+                )
             );
-            $totalPrice = $this->price->execute($_POST['buy_symbol']) * $_POST['buy_amount'];
+            $totalPrice = $this->finnHub->price($_POST['buy_symbol']) * $_POST['buy_amount'];
             $this->removeMoney->execute($totalPrice);
         }
         return $this->environment->render('BuyView.twig');
